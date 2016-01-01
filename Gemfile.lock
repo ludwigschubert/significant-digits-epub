@@ -1,15 +1,58 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    equatable (0.5.0)
     mini_portile2 (2.0.0)
+    necromancer (0.3.0)
     nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
+    pastel (0.5.2)
+      equatable (~> 0.5)
+      tty-screen (~> 0.4)
+    tty (0.3.2)
+      equatable (~> 0.5.0)
+      pastel (~> 0.5.1)
+      tty-cursor (~> 0.1.0)
+      tty-pager (~> 0.3.0)
+      tty-platform (~> 0.1.0)
+      tty-progressbar (~> 0.7.0)
+      tty-prompt (~> 0.2.0)
+      tty-screen (~> 0.4.0)
+      tty-spinner (~> 0.1.0)
+      tty-table (~> 0.4.0)
+      tty-which (~> 0.1.0)
+    tty-cursor (0.1.0)
+    tty-pager (0.3.0)
+      tty-screen (~> 0.4.0)
+      tty-which (~> 0.1.0)
+      verse (~> 0.4.0)
+    tty-platform (0.1.0)
+    tty-progressbar (0.7.0)
+      tty-screen (~> 0.4.0)
+    tty-prompt (0.2.0)
+      necromancer (~> 0.3.0)
+      pastel (~> 0.5.1)
+      tty-platform (~> 0.1.0)
+    tty-screen (0.4.3)
+    tty-spinner (0.1.0)
+    tty-table (0.4.0)
+      equatable (~> 0.5.0)
+      necromancer (~> 0.3.0)
+      pastel (~> 0.5.1)
+      tty-screen (~> 0.4.0)
+      unicode_utils (~> 1.4.0)
+      verse (~> 0.4.0)
+    tty-which (0.1.0)
+    unicode_utils (1.4.0)
+    verse (0.4.0)
+      unicode_utils (~> 1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   nokogiri
+  tty
 
 BUNDLED WITH
    1.10.6

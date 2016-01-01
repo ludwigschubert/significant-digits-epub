@@ -1,15 +1,21 @@
 #!/usr/bin/env ruby -wKU
 
+$VERBOSE = nil
+
+require 'yaml'
 require "bundler"
-require "pry"
 Bundler.require :default
+
+arcs = File.open("arcs.yml") { |file| YAML.load(file) }
+
+spinner = TTY::Spinner.new('Requesting chapters ... ', format: :spin_2)
+spinner.spin
 
 # puts "Getting base page"
 base_url  = URI.parse "http://www.anarchyishyperbole.com/p/significant-digits.html"
 base_html = Net::HTTP.get base_url
 base_doc  = Nokogiri::HTML base_html
 
-puts "Now getting links"
 links = base_doc.css("div#post-body-1033655653480284046 a")
 
 chapter_uris = links.map do |link|
@@ -23,15 +29,23 @@ end
 # move glossary to the end
 chapter_uris += [chapter_uris.shift]
 
-chapter_uris.each_with_index do |chapter_uri, index|
+spinner.stop('Done!')
+sort_index = 0
+arc_index = 0
+chapter_uris.each do |chapter_uri|
+  sort_index += 1
   html = Net::HTTP.get chapter_uri
   doc  = Nokogiri::HTML html
   content = doc.css("div.post")[0]
 
   # Rewrite Chapter Titles
+  chapter_name = nil
   content.css("h3").each do |h3|
-    h3.content = h3.text.split(':')[-1]
+    h3.content = h3.text.split("Significant Digits, ").last
+    chapter_name = h3.content.split(": ").last.strip
+    h3.name = "h2"
   end
+  puts "Downloaded \"#{chapter_name}\""
 
   # Replace double <br> with wrapping <p>
   #via http://stackoverflow.com/questions/8937846/how-do-i-wrap-html-untagged-text-with-p-tag-using-nokogiri
@@ -44,7 +58,7 @@ chapter_uris.each_with_index do |chapter_uri, index|
   # Remove duplicated headers
   content.css("span").select do |node|
     # binding.pry
-    node.remove if node.text =~ /Chapter/
+    node.remove if node.text =~ /Chapter/ or node.text =~ /Bonus/
   end
 
   # Remove empty <i> linebreaks
@@ -59,8 +73,19 @@ chapter_uris.each_with_index do |chapter_uri, index|
 
   # content.css('br').remove
 
+  # Write new arc if necessary
+  arc = arcs[arc_index]
+  if arc and arc['first_chapter_name'] == chapter_name
+    open("chapters/" + sort_index.to_s.rjust(3, '0') + "-arc.html", "w") do |file|
+      file << "<h1>#{arc['name']}</h1>"
+    end
+    arc_index += 1
+    sort_index += 1
+  end
+
   # Write to file
-  open("chapters/chapter-" + index.to_s + ".html", "w") do |file|
+  open("chapters/" + sort_index.to_s.rjust(3, '0') + "-chapter.html", "w") do |file|
     file << content
   end
+
 end

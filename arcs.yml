@@ -1,0 +1,8 @@
+- name: "Arc 1:<br><span class=\"arc-title\">Thesis</span>"
+  first_chapter_name: "Frontloading Mysteries"
+- name: "Arc 2:<br><span class=\"arc-title\">Antithesis</span>"
+  first_chapter_name: "Brute Existent"
+- name: "Arc 3"
+  first_chapter_name: "Directoire Exécutif"
+- name: "Glossary"
+  first_chapter_name: "Significant Digits glossary"

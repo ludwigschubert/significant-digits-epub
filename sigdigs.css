@@ -32,6 +32,7 @@ h4 { text-align: left; }
 h5 { text-align: left; }
 h6 { text-align: left; }
 h1.title { }
+h1.arc-title { font-size: 200%; }
 h2.author { }
 h3.date { }
 ol.toc { padding: 0; margin-left: 1em; }
