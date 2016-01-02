@@ -2,6 +2,7 @@ SHELL = /bin/bash
 
 .PHONY: download
 download: downloader.rb
+	rm -f chapters\* ;\
 	ruby downloader.rb
 
 sigdigs.epub: converter.sh sigdigs.css metadata.xml cover.png chapters/*
@@ -9,10 +10,10 @@ sigdigs.epub: converter.sh sigdigs.css metadata.xml cover.png chapters/*
 
 .PHONY: proof
 proof: sigdigs.epub
-	rm -rf test ;\
-	mkdir -p test ;\
-	mv sigdigs.epub test/sigdigs.epub ;\
-	cd test ;\
+	rm -rf proof.epub ;\
+	mkdir -p proof.epub ;\
+	mv sigdigs.epub proof.epub/sigdigs.epub ;\
+	cd proof.epub ;\
 	unzip sigdigs.epub ;\
 
 

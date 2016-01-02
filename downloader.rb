@@ -56,13 +56,13 @@ chapter_uris.each do |chapter_uri|
   # end
 
   # Remove duplicated headers
-  content.css("span").select do |node|
-    # binding.pry
+  content.css("span").each do |node|
     node.remove if node.text =~ /Chapter/ or node.text =~ /Bonus/
+    node['class'] = "center" if node.text =~ /≡≡≡Ω≡≡≡/
   end
 
   # Remove empty <i> linebreaks
-  content.css("i").select do |node|
+  content.css("i").each do |node|
     node.remove if node.text.strip.empty?
   end
 

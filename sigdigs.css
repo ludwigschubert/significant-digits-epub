@@ -13,15 +13,6 @@
 
 body { font-family: "Adobe Jenson Pro"; }
 
-/* TOC */
-body {
-  counter-reset: toc-chapter;
-}
-div#toc li a::before {
-  counter-increment: toc-chapter;
-  content: "Chapter " counter(toc-chapter) ": ";
-}
-
 /* This defines styles and classes used in the book */
 body { margin: 5%; text-align: justify; font-size: medium; }
 code { font-family: monospace; }
@@ -32,8 +23,24 @@ h4 { text-align: left; }
 h5 { text-align: left; }
 h6 { text-align: left; }
 h1.title { }
-h1.arc-title { font-size: 200%; }
+h1 span.arc-title { font-size: 150%; }
+.center { text-align: center; }
 h2.author { }
 h3.date { }
-ol.toc { padding: 0; margin-left: 1em; }
+ol.toc { text-align: center;
+         margin: 0;
+         padding: 1em 0 2em 0;
+         font-size: 150%; }
+ol.toc ol.toc { text-align: left;
+                font-size: medium; }
+ol.toc a { color: black; }
 ol.toc li { list-style-type: none; margin: 0; padding: 0; }
+
+.titlepage img {
+  width: 75%;
+  padding: 1em 1em 1em 1em;
+}
+
+.titlepage p.author {
+  font-style: italic;
+}
