@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 .PHONY: download
 download: downloader.rb
-	rm -f chapters\* ;\
+	rm -f chapters/* ;\
 	ruby downloader.rb
 
 sigdigs.epub: converter.sh sigdigs.css metadata.xml cover.png chapters/*

@@ -22,12 +22,14 @@ chapter_uris = links.map do |link|
   link['href']
 end.select do |url|
   url =~ /significant-digits-/
-end.map do |url|
-  URI.parse url
 end
-
 # move glossary to the end
 chapter_uris += [chapter_uris.shift]
+# add 'previously on...'
+chapter_uris << 'http://www.anarchyishyperbole.com/p/previously-on-harry-potter-and-methods.html'
+chapter_uris.map! do |url|
+  URI.parse url
+end
 
 spinner.stop('Done!')
 sort_index = 0
@@ -58,7 +60,13 @@ chapter_uris.each do |chapter_uri|
   # Remove duplicated headers
   content.css("span").each do |node|
     node.remove if node.text =~ /Chapter/ or node.text =~ /Bonus/
-    node['class'] = "center" if node.text =~ /≡≡≡Ω≡≡≡/
+    node.name = "h4" if node.text =~ /≡≡≡Ω≡≡≡/
+  end
+
+  # Remove duplicated headers in Arc 2 chapters
+  content.css("b").each do |node|
+    node.remove if node.text =~ /Chapter/ or node.text =~ /Bonus/ or node.text =~ /Significant Digits Glossary/
+    node.name = "h4" if node.text =~ /≡≡≡Ω≡≡≡/
   end
 
   # Remove empty <i> linebreaks

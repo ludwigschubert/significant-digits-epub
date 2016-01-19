@@ -7,8 +7,20 @@
 @font-face {
   font-family: Adobe Jenson Pro;
   font-style: italic;
-  font-weight: bold;
+  font-weight: normal;
   src:url("Adobe Jenson Pro Italic.ttf");
+}
+@font-face {
+  font-family: Adobe Jenson Pro;
+  font-style: normal;
+  font-weight: bold;
+  src:url("Adobe Jenson Pro Bold.ttf");
+}
+@font-face {
+  font-family: Adobe Jenson Pro;
+  font-style: italic;
+  font-weight: bold;
+  src:url("Adobe Jenson Pro Bold Italic.ttf");
 }
 
 body { font-family: "Adobe Jenson Pro"; }
@@ -19,7 +31,7 @@ code { font-family: monospace; }
 h1 { text-align: left; }
 h2 { text-align: left; }
 h3 { text-align: left; }
-h4 { text-align: left; }
+h4 { text-align: center; } // These Omega-mid chapter separators
 h5 { text-align: left; }
 h6 { text-align: left; }
 h1.title { }

@@ -6,3 +6,5 @@
   first_chapter_name: "Directoire Exécutif"
 - name: "Glossary"
   first_chapter_name: "Significant Digits glossary"
+- name: "Before Significant Digits..."
+  first_chapter_name: 'Previously on "Harry Potter and the Methods of Rationality" ....'
