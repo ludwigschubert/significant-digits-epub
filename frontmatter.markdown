@@ -1,20 +1,8 @@
-<!DOCTYPE html>
+![](img/sd.png){#wordmark}
 
-<html>
-  <head>
-    <meta charset="utf-8">
-  </head>
-  <body>
+by Alexander D.{#author}
 
-    <div class="titlepage">
-      <img class="titlepic" src="img/titlepic.png"/>
-      <img class="wordmark" src="img/sd.png"/>
-      <p class="author">by Alexander D.</p>
-    </div>
-
-    <div class="intro">
-      It's easy to make big plans and ask big questions, but a lot harder to follow them through.  Find out what happens to Harry Potter-Evans-Verres, Hermione, Draco, and everyone else once they grow into their roles as leaders, leave the shelter of Hogwarts, and venture out into a wider world of intrigue, politics, and war.
-    </div>
+It's easy to make big plans and ask big questions, but a lot harder to follow them through.  Find out what happens to Harry Potter-Evans-Verres, Hermione, Draco, and everyone else once they grow into their roles as leaders, leave the shelter of Hogwarts, and venture out into a wider world of intrigue, politics, and war.{#intro}
 
     <div class="endorsements">
 
@@ -37,6 +25,3 @@
     <div class="thanks">
       My thanks to 4t0m for his copyediting assistance.
     </div>
-
-  </body>
-</html>

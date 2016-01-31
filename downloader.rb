@@ -25,6 +25,7 @@ end.select do |url|
 end
 # move glossary to the end
 chapter_uris += [chapter_uris.shift]
+chapter_uris.delete "http://links.schubert.io/significant-digits-epub"
 # add 'previously on...'
 chapter_uris << 'http://www.anarchyishyperbole.com/p/previously-on-harry-potter-and-methods.html'
 chapter_uris.map! do |url|
@@ -37,6 +38,7 @@ arc_index = 0
 chapter_uris.each do |chapter_uri|
   sort_index += 1
   html = Net::HTTP.get chapter_uri
+  puts chapter_uri
   doc  = Nokogiri::HTML html
   content = doc.css("div.post")[0]
 
@@ -68,6 +70,15 @@ chapter_uris.each do |chapter_uri|
     node.remove if node.text =~ /Chapter/ or node.text =~ /Bonus/ or node.text =~ /Significant Digits Glossary/
     node.name = "h4" if node.text =~ /≡≡≡Ω≡≡≡/
   end
+
+  # Remove empty paragraphs
+  content.css("p").each do |node|
+    node.remove if node.text.strip == ""
+  end
+
+  # Remove SigDigs header image in later chapters
+  content.css("div.separator").remove
+  content.css("img").remove
 
   # Remove empty <i> linebreaks
   content.css("i").each do |node|
